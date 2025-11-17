@@ -103,12 +103,19 @@
             <img src="docs/Logo-light.png" alt="Logo" class="logo">
             <br>
         </div>
+
+        <div id="game" style="width: 640px; height: 480px;"></div>
+        
         <div id="box">
             <input type="file" id ="input" title="Upload" />
             Drag ROM file or click here
         </div>
 
         <script>
+            EJS_player = "#game";
+            EJS_core = "gb";                        // Game Boy emulator core
+            EJS_gameUrl = "roms/SolarStriker.gb";   // Path to your ROM
+            EJS_lightgun = false;
             let enableDebug = false;
             let enableThreads = false;
             let browserMode;
@@ -159,7 +166,6 @@
                 emulator.setCanvas(canvas);
             }
 
-            
 
             async function run(upload, file) {
                 const url = upload ? input.files[0] : `roms/${file}`;
@@ -295,6 +301,8 @@
                     window.EJS_browserMode = browserMode;
                 }
 
+                
+
                 script.src = "data/loader.js";
                 document.body.appendChild(script);
             }
@@ -306,5 +314,6 @@
             box.ondragover = () => box.setAttribute("drag", true);
             box.ondragleave = () => box.removeAttribute("drag");
         </script>
+        <script src="https://cdn.emulatorjs.org/loader.js"></script>
     </body>
 </html>
